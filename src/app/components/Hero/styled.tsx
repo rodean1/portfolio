@@ -34,6 +34,19 @@ export const HeroGrid = styled("div")({
 
 export const HeroIntro = styled("div")({
   gridArea: "intro",
+  "& > div": {
+    whiteSpace: "nowrap",
+    fontSize: "clamp(10px, 2.65vw, 11px)",
+    letterSpacing: "0.035em",
+    gap: "7px",
+  },
+  "@media (min-width: 720px)": {
+    "& > div": {
+      fontSize: "12px",
+      letterSpacing: "0.06em",
+      gap: "9px",
+    },
+  },
 });
 
 export const HeroBody = styled("div")({
@@ -41,12 +54,17 @@ export const HeroBody = styled("div")({
 });
 
 export const HeroTitle = styled("h1")({
-  fontSize: "clamp(44px, 6.4vw, 92px)",
+  fontSize: "clamp(30px, 8.7vw, 40px)",
   lineHeight: 0.97,
   letterSpacing: "-0.045em",
   fontWeight: 700,
   margin: "16px 0 24px",
   fontFamily: T.fontSans,
+  whiteSpace: "nowrap",
+  "@media (min-width: 720px)": {
+    fontSize: "clamp(44px, 6.4vw, 92px)",
+    whiteSpace: "normal",
+  },
 });
 
 export const HeroLead = styled("p")({
@@ -107,9 +125,9 @@ export const HeroAside = styled("aside")({
   gap: "12px",
   alignItems: "center",
   justifySelf: "center",
-  width: "62.5%",
-  minWidth: "200px",
-  maxWidth: "269px",
+  width: "78.125%",
+  minWidth: "250px",
+  maxWidth: "336px",
   "@media (min-width: 720px)": {
     gap: "18px",
     alignItems: "stretch",
