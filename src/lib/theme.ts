@@ -31,15 +31,34 @@ export const T = {
   containerPad:'clamp(20px, 5vw, 64px)',
 } as const
 
+// Hex fallbacks for MUI palette — MUI's internal color utilities cannot
+// parse oklch(), so we supply sRGB equivalents. The T.* oklch values are
+// used directly in sx props and CSS, where oklch is fully supported.
+const hex = {
+  accent:     '#D97757', // ≈ oklch(0.72 0.14 45)
+  accentDeep: '#B85C35', // ≈ oklch(0.58 0.16 38)
+  accentInk:  '#6B3520', // ≈ oklch(0.38 0.11 40)
+  accentSoft: '#FDF3EE', // ≈ oklch(0.95 0.04 50)
+  paper:      '#EFEBE3', // same as T.paper
+  ink:        '#2C2318', // ≈ oklch(0.22 0.012 60)
+  ink2:       '#6B5F52', // ≈ oklch(0.42 0.012 60)
+  ink3:       '#9E958C', // ≈ oklch(0.62 0.012 60)
+  line:       '#E8E4DF', // ≈ oklch(0.92 0.008 60)
+  good:       '#4A9E5C', // ≈ oklch(0.68 0.12 150)
+  goodSoft:   '#E8F5EB', // ≈ oklch(0.94 0.05 150)
+  danger:     '#B83232', // ≈ oklch(0.55 0.22 25)
+  warn:       '#C8A030', // ≈ oklch(0.78 0.14 85)
+} as const
+
 const theme = createTheme({
   palette: {
-    primary:    { main: T.accent, dark: T.accentDeep, contrastText: '#fff' },
-    background: { default: T.paper, paper: '#fff' },
-    text:       { primary: T.ink, secondary: T.ink2, disabled: T.ink3 },
-    divider:    T.line,
-    success:    { main: T.good, light: T.goodSoft, contrastText: T.ink },
-    error:      { main: T.danger, contrastText: '#fff' },
-    warning:    { main: T.warn, contrastText: T.ink },
+    primary:    { main: hex.accent, dark: hex.accentDeep, contrastText: '#fff' },
+    background: { default: hex.paper, paper: '#fff' },
+    text:       { primary: hex.ink, secondary: hex.ink2, disabled: hex.ink3 },
+    divider:    hex.line,
+    success:    { main: hex.good, light: hex.goodSoft, contrastText: hex.ink },
+    error:      { main: hex.danger, contrastText: '#fff' },
+    warning:    { main: hex.warn, contrastText: hex.ink },
   },
   typography: {
     fontFamily: 'var(--font-geist), -apple-system, system-ui, sans-serif',
@@ -56,19 +75,19 @@ const theme = createTheme({
           letterSpacing: '-0.005em',
           lineHeight: 1.55,
           WebkitFontSmoothing: 'antialiased',
-          background: T.paper,
-          color: T.ink,
+          background: hex.paper,
+          color: hex.ink,
         },
         img: { maxWidth: '100%', display: 'block' },
         'a.inline-link': {
-          color: T.accentInk,
+          color: hex.accentInk,
           textDecoration: 'none',
           borderBottom: `1px solid currentColor`,
-          '&:hover': { color: T.accentDeep },
+          '&:hover': { color: hex.accentDeep },
         },
         '::selection': {
           background: 'oklch(0.85 0.1 45 / 0.45)',
-          color: T.ink,
+          color: hex.ink,
         },
       },
     },
