@@ -15,7 +15,6 @@ import {
   CaseTitle,
   InfoCard,
   InfoCardLabel,
-  InlineEmphasis,
   SideCards,
 } from "../styled";
 import {
@@ -34,6 +33,24 @@ import {
   MatchRank,
   MatchScore,
   MatchTitle,
+  MobileCarouselDot,
+  MobileCarouselDots,
+  MobileExplainCard,
+  MobileMatchCard,
+  MobileMatchStack,
+  MobileNavPill,
+  MobileNavPills,
+  MobilePanel,
+  MobilePanelCount,
+  MobilePanelHeader,
+  MobilePanelLabel,
+  MobilePanelTitle,
+  MobileShowcase,
+  MobileStatusCard,
+  MobileStatusGrid,
+  MobileStatusLabel,
+  MobileStatusValue,
+  MobileWorkspaceCard,
   ScoutIcon,
   ScoutRole,
   ScoutSidebar,
@@ -85,6 +102,14 @@ const matches = [
   },
 ];
 
+const scoutNavItems = [
+  "⊹ Discover",
+  "◎ Match Score",
+  "✦ Resume AI",
+  "◈ Tracker",
+  "◆ Company Intel",
+];
+
 export default function ScoutCase() {
   return (
     <CaseArticle id="scout" tone="dark">
@@ -125,6 +150,91 @@ export default function ScoutCase() {
             ))}
             <BrowserTitle>scout.app / match score</BrowserTitle>
           </BrowserBar>
+          <MobileShowcase aria-label="Scout mobile product highlights">
+            <MobilePanel>
+              <MobilePanelHeader>
+                <div>
+                  <MobilePanelLabel>Workspace</MobilePanelLabel>
+                  <MobilePanelTitle>Target, criteria, and live context.</MobilePanelTitle>
+                </div>
+                <MobilePanelCount>01</MobilePanelCount>
+              </MobilePanelHeader>
+              <MobileWorkspaceCard>
+                <SidebarBrand>
+                  <ScoutIcon>◎</ScoutIcon>
+                  <div>
+                    <BrandTitleRow>
+                      Scout
+                      <SmallAiBadge>AI</SmallAiBadge>
+                    </BrandTitleRow>
+                    <ScoutRole>RECRUITER</ScoutRole>
+                  </div>
+                </SidebarBrand>
+                <TargetCard>
+                  <TargetLabel>Target</TargetLabel>
+                  <TargetText>Senior Product Manager · SaaS · Remote</TargetText>
+                </TargetCard>
+                <MobileNavPills>
+                  {scoutNavItems.slice(0, 4).map((item, itemIndex) => (
+                    <MobileNavPill key={item} active={itemIndex === 1}>
+                      {item.replace(/^[^\w]+ /, "")}
+                    </MobileNavPill>
+                  ))}
+                </MobileNavPills>
+              </MobileWorkspaceCard>
+              <SidebarStatus>
+                <LiveDotTeal /> Live · indexing
+              </SidebarStatus>
+            </MobilePanel>
+
+            <MobilePanel>
+              <MobilePanelHeader>
+                <div>
+                  <MobilePanelLabel>Ranked matches</MobilePanelLabel>
+                  <MobilePanelTitle>Best-fit roles float to the top.</MobilePanelTitle>
+                </div>
+                <MobilePanelCount>02</MobilePanelCount>
+              </MobilePanelHeader>
+              <MobileMatchStack>
+                {matches.slice(0, 3).map((match) => (
+                  <MobileMatchCard key={match.rank}>
+                    <MatchRank>{match.rank}</MatchRank>
+                    <MatchBody>
+                      <MatchTitle>{match.title}</MatchTitle>
+                      <MatchCompany>{match.company}</MatchCompany>
+                    </MatchBody>
+                    <MatchScore scoreColor={match.color}>{match.score}</MatchScore>
+                  </MobileMatchCard>
+                ))}
+              </MobileMatchStack>
+            </MobilePanel>
+
+            <MobilePanel>
+              <MobilePanelHeader>
+                <div>
+                  <MobilePanelLabel>Explanation layer</MobilePanelLabel>
+                  <MobilePanelTitle>Readable reasons, not black-box scores.</MobilePanelTitle>
+                </div>
+                <MobilePanelCount>03</MobilePanelCount>
+              </MobilePanelHeader>
+              <MobileExplainCard>{matches[3].explain}</MobileExplainCard>
+              <MobileStatusGrid>
+                <MobileStatusCard>
+                  <MobileStatusValue>847</MobileStatusValue>
+                  <MobileStatusLabel>Listings</MobileStatusLabel>
+                </MobileStatusCard>
+                <MobileStatusCard>
+                  <MobileStatusValue>312</MobileStatusValue>
+                  <MobileStatusLabel>Companies</MobileStatusLabel>
+                </MobileStatusCard>
+              </MobileStatusGrid>
+            </MobilePanel>
+          </MobileShowcase>
+          <MobileCarouselDots aria-hidden="true">
+            <MobileCarouselDot active />
+            <MobileCarouselDot />
+            <MobileCarouselDot />
+          </MobileCarouselDots>
           {/* Browser body */}
           <BrowserBody>
             {/* Sidebar */}
@@ -147,13 +257,7 @@ export default function ScoutCase() {
               </TargetCard>
               {/* Nav */}
               <SidebarNav>
-                {[
-                  "⊹ Discover",
-                  "◎ Match Score",
-                  "✦ Resume AI",
-                  "◈ Tracker",
-                  "◆ Company Intel",
-                ].map((item, itemIndex) => (
+                {scoutNavItems.map((item, itemIndex) => (
                   <SidebarNavLink key={item} active={itemIndex === 1}>
                     {item}
                   </SidebarNavLink>
