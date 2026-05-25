@@ -121,7 +121,7 @@ export default function Hero() {
               component="a"
               href="https://github.com/rf2tsl"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               sx={{
                 height: '46px',
                 padding: '0 20px',

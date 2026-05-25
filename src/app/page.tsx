@@ -10,8 +10,9 @@ import Footer from './components/Footer'
 export default function Page() {
   return (
     <>
+      <div id="top" style={{ position: 'absolute', top: 0 }} aria-hidden="true" />
       <Nav />
-      <main id="top">
+      <main>
         <Hero />
         <Marquee />
         <Work />

@@ -37,7 +37,7 @@ export default function Marquee() {
         }}
       >
         {track.map((item, i) => (
-          <Box key={i} component="span" sx={{ display: 'inline-flex', alignItems: 'center', gap: '22px' }}>
+          <Box key={`${i}-${item}`} component="span" sx={{ display: 'inline-flex', alignItems: 'center', gap: '22px' }}>
             <Box component="span">{item}</Box>
             <Box component="span" sx={{ color: T.ink4 }}>·</Box>
           </Box>
