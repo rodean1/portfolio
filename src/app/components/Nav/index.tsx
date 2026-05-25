@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { RfMark } from '@/components/primitives'
+import { RfMark } from "@/components/primitives";
 import {
   BrandLink,
   BrandName,
@@ -9,14 +9,13 @@ import {
   NavLink,
   NavLinkList,
   NavRoot,
-} from './styled'
+} from "./styled";
 
 const navLinks = [
-  { href: '#work', label: 'Work' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#now', label: 'Now' },
-  { href: '#contact', label: 'Contact' },
-]
+  { href: "#work", label: "Work" },
+  { href: "#skills", label: "Skills" },
+  { href: "#contact", label: "Contact" },
+];
 
 export default function Nav() {
   return (
@@ -25,18 +24,13 @@ export default function Nav() {
         {/* Brand */}
         <BrandLink href="#top">
           <RfMark size="md" />
-          <BrandName>
-            Rodean&nbsp;Fraser
-          </BrandName>
+          <BrandName>Rodean&nbsp;Fraser</BrandName>
         </BrandLink>
 
         {/* Nav links */}
         <NavLinkList>
           {navLinks.map((link) => (
-            <NavLink
-              key={link.href}
-              href={link.href}
-            >
+            <NavLink key={link.href} href={link.href}>
               {link.label}
             </NavLink>
           ))}
@@ -48,5 +42,5 @@ export default function Nav() {
         </NavCta>
       </NavInner>
     </NavRoot>
-  )
+  );
 }
