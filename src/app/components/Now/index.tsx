@@ -1,9 +1,17 @@
 'use client'
 
 import React from 'react'
-import Box from '@mui/material/Box'
 import { Eyebrow } from '@/components/primitives'
-import { T } from '@/lib/theme'
+import { InlineMono, PageSection, SectionDescription, SectionIntro, SectionTitle } from '../styled'
+import {
+  MantraAccent,
+  MantraCard,
+  MantraText,
+  NowCard,
+  NowCardLabel,
+  NowCardText,
+  NowGrid,
+} from './styled'
 
 const cards: { label: string; value: React.ReactNode; primary?: boolean }[] = [
   { label: 'Shipping', value: 'Multi‑client SaaS at The Silver Logic — feature work, anomaly dashboards, and bringing tests to brownfield code.', primary: true },
@@ -15,47 +23,37 @@ const cards: { label: string; value: React.ReactNode; primary?: boolean }[] = [
 
 export default function Now() {
   return (
-    <Box
-      component="section"
-      id="now"
-      sx={{ maxWidth: T.maxw, margin: '0 auto', padding: `${T.sectionPadY} ${T.containerPad}` }}
-    >
-      <Box sx={{ maxWidth: '720px', marginBottom: '56px' }}>
-        <Eyebrow>Now · <Box component="span" sx={{ fontFamily: T.fontMono }}>May 2026</Box></Eyebrow>
-        <Box component="h2" sx={{ fontSize: 'clamp(34px, 4.5vw, 54px)', fontWeight: 700, letterSpacing: '-0.035em', lineHeight: 1.05, margin: '14px 0 18px' }}>
+    <PageSection id="now">
+      <SectionIntro>
+        <Eyebrow>Now · <InlineMono>May 2026</InlineMono></Eyebrow>
+        <SectionTitle>
           What I&apos;m building right now.
-        </Box>
-        <Box component="p" sx={{ fontSize: '18px', color: T.ink2, lineHeight: 1.55, maxWidth: '60ch', letterSpacing: '-0.01em' }}>
+        </SectionTitle>
+        <SectionDescription>
           An honest list, updated when it shifts. Borrowed from{' '}
-          <Box component="a" href="https://nownownow.com" target="_blank" rel="noopener noreferrer" className="inline-link">nownownow</Box>.
-        </Box>
-      </Box>
+          <a href="https://nownownow.com" target="_blank" rel="noopener noreferrer" className="inline-link">nownownow</a>.
+        </SectionDescription>
+      </SectionIntro>
 
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: '14px' }}>
+      <NowGrid>
         {cards.map((card, cardIndex) => (
-          <Box
+          <NowCard
             key={cardIndex}
-            sx={{
-              background: card.primary ? T.accentSoft : '#fff',
-              borderRadius: '18px',
-              padding: '22px 24px',
-              boxShadow: card.primary ? `0 0 0 1px oklch(0.85 0.06 50)` : `0 0 0 1px ${T.line}`,
-              display: 'flex', flexDirection: 'column', gap: '10px',
-            }}
+            primary={card.primary}
           >
-            <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.07em', color: card.primary ? T.accentDeep : T.ink3 }}>{card.label}</Box>
-            <Box sx={{ fontSize: '15.5px', color: T.ink, letterSpacing: '-0.01em', lineHeight: 1.5 }}>{card.value}</Box>
-          </Box>
+            <NowCardLabel primary={card.primary}>{card.label}</NowCardLabel>
+            <NowCardText>{card.value}</NowCardText>
+          </NowCard>
         ))}
 
         {/* Mantra card */}
-        <Box sx={{ background: T.ink, borderRadius: '18px', padding: '22px 24px', display: 'flex', flexDirection: 'column', gap: '10px', justifyContent: 'center' }}>
-          <Box sx={{ fontFamily: T.fontSerif, fontSize: '24px', letterSpacing: '-0.015em', lineHeight: 1.2, color: '#fff', display: 'flex', flexDirection: 'column', fontStyle: 'italic' }}>
+        <MantraCard>
+          <MantraText>
             <span>&quot;Build today. Solve tomorrow.</span>
-            <Box component="span" sx={{ color: 'oklch(0.85 0.1 45)' }}>Impact forever.&quot;</Box>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+            <MantraAccent>Impact forever.&quot;</MantraAccent>
+          </MantraText>
+        </MantraCard>
+      </NowGrid>
+    </PageSection>
   )
 }

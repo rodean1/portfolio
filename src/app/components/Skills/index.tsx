@@ -1,8 +1,15 @@
 'use client'
 
-import Box from '@mui/material/Box'
 import { Eyebrow } from '@/components/primitives'
-import { T } from '@/lib/theme'
+import { PageSection, SectionDescription, SectionIntro, SectionTitle } from '../styled'
+import {
+  SkillColumn,
+  SkillColumnNumber,
+  SkillColumnTitle,
+  SkillList,
+  SkillListItem,
+  SkillsGrid,
+} from './styled'
 
 const cols = [
   { num: '01', title: 'Frontend', items: ['React · Next.js · React Native', 'TypeScript · JavaScript (ES6+)', 'HTML5 · CSS3 · responsive design', 'Component architecture & design systems'] },
@@ -15,44 +22,32 @@ const cols = [
 
 export default function Skills() {
   return (
-    <Box
-      component="section"
-      id="skills"
-      sx={{ maxWidth: T.maxw, margin: '0 auto', padding: `${T.sectionPadY} ${T.containerPad}` }}
-    >
-      <Box sx={{ maxWidth: '720px', marginBottom: '56px' }}>
+    <PageSection id="skills">
+      <SectionIntro>
         <Eyebrow>Stack · 04</Eyebrow>
-        <Box component="h2" sx={{ fontSize: 'clamp(34px, 4.5vw, 54px)', fontWeight: 700, letterSpacing: '-0.035em', lineHeight: 1.05, margin: '14px 0 18px' }}>
+        <SectionTitle>
           What I reach for.
-        </Box>
-        <Box component="p" sx={{ fontSize: '18px', color: T.ink2, lineHeight: 1.55, maxWidth: '60ch', letterSpacing: '-0.01em' }}>
+        </SectionTitle>
+        <SectionDescription>
           Comfortable across the stack — but particularly happy in the seam where API design meets frontend delivery.
-        </Box>
-      </Box>
+        </SectionDescription>
+      </SectionIntro>
 
-      <Box sx={{
-        display: 'grid',
-        gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
-        gap: '1px',
-        background: T.line,
-        borderRadius: '22px',
-        overflow: 'hidden',
-        boxShadow: `0 0 0 1px ${T.line}`,
-      }}>
+      <SkillsGrid>
         {cols.map(col => (
-          <Box key={col.num} sx={{ background: T.paper, padding: '28px 26px' }}>
-            <Box sx={{ display: 'flex', alignItems: 'baseline', gap: '10px', fontSize: '17px', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '16px', paddingBottom: '14px', borderBottom: `1px dashed ${T.line2}` }}>
-              <Box component="span" sx={{ fontFamily: T.fontMono, fontSize: '12px', color: T.ink3, fontWeight: 500 }}>{col.num}</Box>
+          <SkillColumn key={col.num}>
+            <SkillColumnTitle>
+              <SkillColumnNumber>{col.num}</SkillColumnNumber>
               {col.title}
-            </Box>
-            <Box component="ul" sx={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            </SkillColumnTitle>
+            <SkillList>
               {col.items.map(item => (
-                <Box key={item} component="li" sx={{ fontSize: '14px', color: T.ink2, letterSpacing: '-0.005em', lineHeight: 1.45 }}>{item}</Box>
+                <SkillListItem key={item}>{item}</SkillListItem>
               ))}
-            </Box>
-          </Box>
+            </SkillList>
+          </SkillColumn>
         ))}
-      </Box>
-    </Box>
+      </SkillsGrid>
+    </PageSection>
   )
 }

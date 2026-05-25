@@ -1,8 +1,6 @@
 'use client'
 
-import React from 'react'
-import Box from '@mui/material/Box'
-import { T } from '@/lib/theme'
+import { MarkBracket, MarkRoot, Monogram, MonogramTrailingLetter } from './styled'
 
 type Size = 'sm' | 'md' | 'lg'
 
@@ -15,61 +13,17 @@ const sizes: Record<Size, { bracket: string; monogram: string }> = {
 export default function RfMark({ size = 'md' }: { size?: Size }) {
   const sizeConfig = sizes[size]
   return (
-    <Box
-      component="span"
-      aria-label="RF"
-      sx={{
-        display: 'inline-flex',
-        alignItems: 'baseline',
-        gap: '3px',
-        lineHeight: 0.85,
-        whiteSpace: 'nowrap',
-        userSelect: 'none',
-      }}
-    >
-      <Box
-        component="span"
-        sx={{
-          fontFamily: T.fontMono,
-          fontWeight: 300,
-          fontSize: sizeConfig.bracket,
-          color: T.ink,
-          letterSpacing: '-0.04em',
-          transform: 'translateY(-1px)',
-        }}
-      >
+    <MarkRoot aria-label="RF">
+      <MarkBracket markFontSize={sizeConfig.bracket}>
         {'<'}
-      </Box>
-      <Box
-        component="span"
-        sx={{
-          fontFamily: T.fontSerif,
-          fontWeight: 400,
-          fontSize: sizeConfig.monogram,
-          color: T.accent,
-          letterSpacing: '0.02em',
-          lineHeight: 1,
-          fontStyle: 'normal',
-        }}
-      >
+      </MarkBracket>
+      <Monogram markFontSize={sizeConfig.monogram}>
         R
-        <Box component="span" sx={{ marginLeft: '0.02em' }}>
-          F
-        </Box>
-      </Box>
-      <Box
-        component="span"
-        sx={{
-          fontFamily: T.fontMono,
-          fontWeight: 300,
-          fontSize: sizeConfig.bracket,
-          color: T.ink,
-          letterSpacing: '-0.04em',
-          transform: 'translateY(-1px)',
-        }}
-      >
+        <MonogramTrailingLetter>F</MonogramTrailingLetter>
+      </Monogram>
+      <MarkBracket markFontSize={sizeConfig.bracket}>
         {'/>'}
-      </Box>
-    </Box>
+      </MarkBracket>
+    </MarkRoot>
   )
 }

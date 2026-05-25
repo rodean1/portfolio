@@ -1,54 +1,82 @@
 'use client'
 
-import React from 'react'
-import Box from '@mui/material/Box'
-import { T } from '@/lib/theme'
-
-function CaseCard({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <Box sx={{ background: T.paper, borderRadius: '16px', padding: '18px 20px', boxShadow: `inset 0 0 0 1px ${T.line}` }}>
-      <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.07em', color: T.ink3, marginBottom: '10px' }}>{label}</Box>
-      {children}
-    </Box>
-  )
-}
+import {
+  CardParagraph,
+  CaseArticle,
+  CaseCanvas,
+  CaseDescription,
+  CaseHeader,
+  CaseIndex,
+  CaseKicker,
+  CaseList,
+  CaseListItem,
+  CaseTag,
+  CaseTags,
+  CaseTitle,
+  InfoCard,
+  InfoCardLabel,
+  InlineEmphasis,
+  InlineStrong,
+  KickerBadge,
+  KickerDot,
+  SideCards,
+} from '../styled'
+import {
+  ChartCard,
+  ChartLegend,
+  ChartLegendItem,
+  ChartSvg,
+  ChartSwatch,
+  DashboardBadge,
+  DashboardBadges,
+  DashboardHead,
+  DashboardOverline,
+  DashboardShell,
+  DashboardTitle,
+  StatCard,
+  StatDelta,
+  StatLabel,
+  StatsGrid,
+  StatUnit,
+  StatValue,
+} from './styled'
 
 function Dashboard() {
   return (
-    <Box sx={{ background: T.bg, borderRadius: '18px', padding: '24px', boxShadow: `inset 0 0 0 1px ${T.line}` }}>
+    <DashboardShell>
       {/* Head */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '14px', paddingBottom: '16px', marginBottom: '18px', borderBottom: `1px solid ${T.line}` }}>
-        <Box>
-          <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.07em', color: T.ink3, marginBottom: '4px' }}>Scheduling reliability · live</Box>
-          <Box sx={{ fontSize: '17px', fontWeight: 600, letterSpacing: '-0.015em' }}>Event triggers · last 30 days</Box>
-        </Box>
-        <Box sx={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-          <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: T.goodSoft, color: 'oklch(0.35 0.09 150)', borderRadius: '99px', fontWeight: 600 }}>3σ → 5σ</Box>
-          <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: '#fff', color: T.ink2, borderRadius: '99px', boxShadow: `0 0 0 1px ${T.line}` }}>last refresh 12s ago</Box>
-        </Box>
-      </Box>
+      <DashboardHead>
+        <div>
+          <DashboardOverline>Scheduling reliability · live</DashboardOverline>
+          <DashboardTitle>Event triggers · last 30 days</DashboardTitle>
+        </div>
+        <DashboardBadges>
+          <DashboardBadge variant="success">3σ → 5σ</DashboardBadge>
+          <DashboardBadge variant="neutral">last refresh 12s ago</DashboardBadge>
+        </DashboardBadges>
+      </DashboardHead>
 
       {/* Stats */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' }, gap: '12px', marginBottom: '20px' }}>
+      <StatsGrid>
         {[
           { label: 'Failure rate', value: '0.4', unit: '%', delta: '↓ from 7.0%', good: true },
           { label: 'DPMO', value: '4,012', unit: '', delta: '↓ from 70,000', good: true },
           { label: 'Mean time to detect', value: '38', unit: 's', delta: 'was: hours', good: true },
           { label: 'Coverage', value: '94', unit: '%', delta: 'unit + E2E', good: false },
         ].map((stat) => (
-          <Box key={stat.label} sx={{ background: '#fff', borderRadius: '12px', padding: '14px 16px', boxShadow: `0 0 0 1px ${T.line}` }}>
-            <Box sx={{ fontFamily: T.fontMono, fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.07em', color: T.ink3, marginBottom: '6px' }}>{stat.label}</Box>
-            <Box sx={{ fontSize: '26px', fontWeight: 700, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', lineHeight: 1 }}>
-              {stat.value}<Box component="span" sx={{ fontSize: '14px', color: T.ink3, fontWeight: 500, marginLeft: '1px' }}>{stat.unit}</Box>
-            </Box>
-            <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', color: stat.good ? 'oklch(0.5 0.12 150)' : T.ink3, marginTop: '6px' }}>{stat.delta}</Box>
-          </Box>
+          <StatCard key={stat.label}>
+            <StatLabel>{stat.label}</StatLabel>
+            <StatValue>
+              {stat.value}<StatUnit>{stat.unit}</StatUnit>
+            </StatValue>
+            <StatDelta good={stat.good}>{stat.delta}</StatDelta>
+          </StatCard>
         ))}
-      </Box>
+      </StatsGrid>
 
       {/* Chart */}
-      <Box sx={{ background: '#fff', borderRadius: '12px', padding: '16px', boxShadow: `0 0 0 1px ${T.line}` }}>
-        <Box component="svg" viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true" sx={{ width: '100%', height: '160px', display: 'block' }}>
+      <ChartCard>
+        <ChartSvg viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="dbGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="oklch(0.72 0.14 45)" stopOpacity="0.35" />
@@ -67,92 +95,91 @@ function Dashboard() {
           <path d="M0,150 L40,148 L80,145 L120,142 L160,140 L200,135 L240,95 L280,55 L320,42 L360,38 L400,34 L440,30 L480,28 L520,26 L560,25 L600,24 L600,160 L0,160 Z"
             fill="url(#dbGrad)" />
           <line x1="220" y1="10" x2="220" y2="160" stroke="oklch(0.22 0.012 60)" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
-        </Box>
-        <Box sx={{ display: 'flex', gap: '18px', flexWrap: 'wrap', marginTop: '10px', fontFamily: T.fontMono, fontSize: '11px', color: T.ink3 }}>
-          <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-            <Box component="i" sx={{ width: '14px', height: '3px', borderRadius: '2px', display: 'inline-block', background: 'oklch(0.55 0.22 25)' }} />
+        </ChartSvg>
+        <ChartLegend>
+          <ChartLegendItem>
+            <ChartSwatch swatchColor="oklch(0.55 0.22 25)" />
             Failure rate
-          </Box>
-          <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-            <Box component="i" sx={{ width: '14px', height: '3px', borderRadius: '2px', display: 'inline-block', background: 'oklch(0.72 0.14 45)' }} />
+          </ChartLegendItem>
+          <ChartLegendItem>
+            <ChartSwatch swatchColor="oklch(0.72 0.14 45)" />
             Detection coverage
-          </Box>
-          <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: T.accentInk }}>
+          </ChartLegendItem>
+          <ChartLegendItem accent>
             ▲ Dashboard shipped
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+          </ChartLegendItem>
+        </ChartLegend>
+      </ChartCard>
+    </DashboardShell>
   )
 }
 
 export default function SilverLogicCase() {
   return (
-    <Box
-      component="article"
-      id="silverlogic"
-      sx={{ marginBottom: 0, padding: '48px', background: '#fff', borderRadius: '28px', boxShadow: `0 1px 0 rgba(20,15,10,0.04), 0 0 0 1px ${T.line}` }}
-    >
+    <CaseArticle id="silverlogic" last>
       {/* Header */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '56px 1fr auto' }, gap: '24px', marginBottom: '44px', alignItems: 'start' }}>
-        <Box sx={{ fontFamily: T.fontMono, fontSize: '14px', fontWeight: 500, color: T.ink3, letterSpacing: '0.04em', paddingTop: '6px' }}>03</Box>
-        <Box>
-          <Box sx={{ fontFamily: T.fontMono, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.06em', color: T.ink3, marginBottom: '10px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <Box component="span" sx={{ width: '8px', height: '8px', borderRadius: '99px', background: T.good, display: 'inline-block' }} />
+      <CaseHeader>
+        <CaseIndex>03</CaseIndex>
+        <div>
+          <CaseKicker>
+            <KickerDot />
             The Silver Logic
-            <Box component="span" sx={{ fontFamily: T.fontMono, fontSize: '10.5px', padding: '3px 9px', background: T.goodSoft, color: 'oklch(0.35 0.09 150)', borderRadius: '99px', textTransform: 'none', letterSpacing: 0, marginLeft: '6px' }}>Day job · 2023 — present</Box>
-          </Box>
-          <Box component="h3" sx={{ fontSize: 'clamp(28px, 3.2vw, 40px)', fontWeight: 700, letterSpacing: '-0.035em', lineHeight: 1.08, margin: '0 0 14px' }}>
+            <KickerBadge>Day job · 2023 — present</KickerBadge>
+          </CaseKicker>
+          <CaseTitle>
             SaaS, portals, and a reliability win.
-          </Box>
-          <Box component="p" sx={{ maxWidth: '60ch', fontSize: '16.5px', color: T.ink2, lineHeight: 1.6 }}>
+          </CaseTitle>
+          <CaseDescription>
             Three years building features end‑to‑end across multiple client deployments — React/TypeScript frontends backed by Django DRF and GraphQL APIs. Specifics anonymized; details below.
-          </Box>
-        </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-end' }}>
+          </CaseDescription>
+        </div>
+        <CaseTags>
           {['Production · 5+ clients', 'Team of 5+ engineers'].map((tag) => (
-            <Box key={tag} sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: T.bg, color: T.ink2, borderRadius: '99px', whiteSpace: 'nowrap' }}>{tag}</Box>
+            <CaseTag key={tag}>{tag}</CaseTag>
           ))}
-        </Box>
-      </Box>
+        </CaseTags>
+      </CaseHeader>
 
       {/* Canvas */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'minmax(0, 1.5fr) minmax(260px, 1fr)' }, gap: '36px', alignItems: 'start' }}>
+      <CaseCanvas>
         <Dashboard />
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-          <CaseCard label="The win">
-            <Box component="p" sx={{ fontSize: '14.5px', color: T.ink2, lineHeight: 1.55, margin: 0 }}>
+        <SideCards>
+          <InfoCard>
+            <InfoCardLabel>The win</InfoCardLabel>
+            <CardParagraph>
               Spotted a{' '}
-              <Box component="strong" sx={{ color: T.ink, fontWeight: 600 }}>7% event‑trigger failure rate</Box>
+              <InlineStrong>7% event‑trigger failure rate</InlineStrong>
               {' '}in a client scheduling system — 70,000 DPMO, 3σ territory. Designed a real‑time monitoring + anomaly detection dashboard that surfaced failures within seconds instead of hours, enabling proactive maintenance.
-            </Box>
-          </CaseCard>
-          <CaseCard label="Also shipped">
-            <Box component="ul" sx={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '14px', color: T.ink2, display: 'flex', flexDirection: 'column' }}>
+            </CardParagraph>
+          </InfoCard>
+          <InfoCard>
+            <InfoCardLabel>Also shipped</InfoCardLabel>
+            <CaseList>
               {[
                 'REST + GraphQL APIs (DRF, graphene‑django)',
                 'Stripe, Auth0, mapping/notification integrations across 5+ client builds',
                 'Cypress E2E + component tests as CI/CD gate',
                 'Unit/integration coverage from zero on a brownfield codebase',
               ].map(item => (
-                <Box key={item} component="li" sx={{ padding: '6px 0', borderBottom: `1px dashed ${T.line}`, '&:last-child': { borderBottom: 'none' }, display: 'flex', alignItems: 'baseline', gap: '8px', '&::before': { content: '"→"', fontFamily: T.fontMono, fontSize: '11px', color: T.accentDeep, flexShrink: 0 } }}>
+                <CaseListItem key={item}>
                   {item}
-                </Box>
+                </CaseListItem>
               ))}
-            </Box>
-          </CaseCard>
-          <CaseCard label="How I work">
-            <Box component="p" sx={{ fontSize: '14.5px', color: T.ink2, lineHeight: 1.55, margin: 0 }}>
+            </CaseList>
+          </InfoCard>
+          <InfoCard>
+            <InfoCardLabel>How I work</InfoCardLabel>
+            <CardParagraph>
               Lean Six Sigma Green Belt — DMAIC isn&apos;t a buzzword on the resume, it&apos;s how I scope a fix.{' '}
-              <Box component="em" sx={{ fontStyle: 'italic', color: T.ink, fontFamily: T.fontSerif }}>Define</Box> the metric,{' '}
-              <Box component="em" sx={{ fontStyle: 'italic', color: T.ink, fontFamily: T.fontSerif }}>measure</Box> the baseline,{' '}
-              <Box component="em" sx={{ fontStyle: 'italic', color: T.ink, fontFamily: T.fontSerif }}>analyze</Box> the root cause,{' '}
-              <Box component="em" sx={{ fontStyle: 'italic', color: T.ink, fontFamily: T.fontSerif }}>improve</Box>, then{' '}
-              <Box component="em" sx={{ fontStyle: 'italic', color: T.ink, fontFamily: T.fontSerif }}>control</Box> with monitoring.
-            </Box>
-          </CaseCard>
-        </Box>
-      </Box>
-    </Box>
+              <InlineEmphasis>Define</InlineEmphasis> the metric,{' '}
+              <InlineEmphasis>measure</InlineEmphasis> the baseline,{' '}
+              <InlineEmphasis>analyze</InlineEmphasis> the root cause,{' '}
+              <InlineEmphasis>improve</InlineEmphasis>, then{' '}
+              <InlineEmphasis>control</InlineEmphasis> with monitoring.
+            </CardParagraph>
+          </InfoCard>
+        </SideCards>
+      </CaseCanvas>
+    </CaseArticle>
   )
 }
