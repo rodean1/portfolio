@@ -8,7 +8,7 @@ export const HeroSection = styled("section")({
   maxWidth: T.maxw,
   margin: "0 auto",
   padding: "40px 20px 60px",
-  "@media (min-width: 900px)": {
+  "@media (min-width: 720px)": {
     padding: `clamp(40px, 8vw, 96px) ${T.containerPad} clamp(60px, 9vw, 120px)`,
   },
 });
@@ -16,11 +16,28 @@ export const HeroSection = styled("section")({
 export const HeroGrid = styled("div")({
   display: "grid",
   gridTemplateColumns: "1fr",
+  gridTemplateAreas: `
+    "intro"
+    "portrait"
+    "body"
+  `,
   gap: "clamp(28px, 5vw, 72px)",
   alignItems: "center",
-  "@media (min-width: 900px)": {
+  "@media (min-width: 720px)": {
     gridTemplateColumns: "minmax(0, 1.4fr) minmax(0, 1fr)",
-  },
+    gridTemplateAreas: `
+      "intro portrait"
+      "body portrait"
+    `,
+    },
+});
+
+export const HeroIntro = styled("div")({
+  gridArea: "intro",
+});
+
+export const HeroBody = styled("div")({
+  gridArea: "body",
 });
 
 export const HeroTitle = styled("h1")({
@@ -84,10 +101,23 @@ export const SecondaryActionLink = styled("a")({
 });
 
 export const HeroAside = styled("aside")({
+  gridArea: "portrait",
   display: "flex",
   flexDirection: "column",
-  gap: "18px",
-  alignItems: "stretch",
+  gap: "12px",
+  alignItems: "center",
+  justifySelf: "center",
+  width: "62.5%",
+  minWidth: "200px",
+  maxWidth: "269px",
+  "@media (min-width: 720px)": {
+    gap: "18px",
+    alignItems: "stretch",
+    justifySelf: "stretch",
+    width: "auto",
+    minWidth: 0,
+    maxWidth: "none",
+  },
 });
 
 export const PortraitFigure = styled("figure")({
@@ -119,22 +149,6 @@ export const PortraitImage = styled(Image)({
   objectFit: "cover",
   objectPosition: "center 18%",
   borderRadius: "14px",
-});
-
-export const PortraitCaption = styled("figcaption")({
-  marginTop: "14px",
-  fontFamily: T.fontSerif,
-  fontStyle: "italic",
-  fontSize: "18px",
-  lineHeight: 1.2,
-  color: T.ink2,
-  display: "flex",
-  flexDirection: "column",
-});
-
-export const PortraitCaptionAccent = styled("span")({
-  color: T.accentDeep,
-  fontWeight: 500,
 });
 
 export const StampGrid = styled("div")({

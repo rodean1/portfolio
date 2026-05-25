@@ -7,13 +7,13 @@ import {
   ActionRow,
   ChipRow,
   HeroAside,
+  HeroBody,
   HeroGrid,
+  HeroIntro,
   HeroLead,
   HeroSection,
   HeroStrong,
   HeroTitle,
-  PortraitCaption,
-  PortraitCaptionAccent,
   PortraitFigure,
   PortraitImage,
   SecondaryActionLink,
@@ -34,12 +34,40 @@ export default function Hero() {
   return (
     <HeroSection>
       <HeroGrid>
-        {/* Left: text */}
-        <div>
+        <HeroIntro>
           <Eyebrow dot>Available · open to senior full‑stack roles</Eyebrow>
 
           <HeroTitle>Full stack engineer.</HeroTitle>
+        </HeroIntro>
 
+        {/* Right: portrait */}
+        <HeroAside>
+          {/* Portrait frame with tape pseudo */}
+          <PortraitFigure>
+            <PortraitImage
+              src="/portrait.png"
+              alt="Sketched portrait of Rodean Fraser"
+              width={430}
+              height={520}
+              priority
+            />
+          </PortraitFigure>
+
+          {/* Stamp row */}
+          <StampGrid>
+            {[
+              { label: "Based in", value: "Florida · Remote" },
+              { label: "Years shipping", value: "5+" },
+            ].map(({ label, value }) => (
+              <React.Fragment key={label}>
+                <StampLabel>{label}</StampLabel>
+                <StampValue>{value}</StampValue>
+              </React.Fragment>
+            ))}
+          </StampGrid>
+        </HeroAside>
+
+        <HeroBody>
           <HeroLead>
             I&apos;m <HeroStrong>Rodean Fraser</HeroStrong> and for the last
             five years I have been building SaaS products, integrating AI into
@@ -69,39 +97,7 @@ export default function Hero() {
               GitHub <span aria-hidden="true">↗</span>
             </SecondaryActionLink>
           </ActionRow>
-        </div>
-
-        {/* Right: portrait */}
-        <HeroAside>
-          {/* Portrait frame with tape pseudo */}
-          <PortraitFigure>
-            <PortraitImage
-              src="/portrait.png"
-              alt="Sketched portrait of Rodean Fraser"
-              width={430}
-              height={520}
-              priority
-            />
-            <PortraitCaption>
-              <span>Calm mind.</span>
-              <span>Big plans.</span>
-              <PortraitCaptionAccent>Bigger impact.</PortraitCaptionAccent>
-            </PortraitCaption>
-          </PortraitFigure>
-
-          {/* Stamp row */}
-          <StampGrid>
-            {[
-              { label: "Based in", value: "Florida · Remote" },
-              { label: "Years shipping", value: "5+" },
-            ].map(({ label, value }) => (
-              <React.Fragment key={label}>
-                <StampLabel>{label}</StampLabel>
-                <StampValue>{value}</StampValue>
-              </React.Fragment>
-            ))}
-          </StampGrid>
-        </HeroAside>
+        </HeroBody>
       </HeroGrid>
     </HeroSection>
   );
