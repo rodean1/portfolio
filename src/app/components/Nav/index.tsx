@@ -67,11 +67,11 @@ export default function Nav() {
             alignItems: 'center',
           }}
         >
-          {navLinks.map((l) => (
+          {navLinks.map((link) => (
             <Box
-              key={l.href}
+              key={link.href}
               component="a"
-              href={l.href}
+              href={link.href}
               sx={{
                 textDecoration: 'none',
                 color: T.ink2,
@@ -87,7 +87,7 @@ export default function Nav() {
                 },
               }}
             >
-              {l.label}
+              {link.label}
             </Box>
           ))}
         </Box>

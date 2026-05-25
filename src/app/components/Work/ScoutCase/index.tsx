@@ -59,8 +59,8 @@ export default function ScoutCase() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-end' }}>
-          {['Web app · 2026', 'AI · Anthropic'].map(t => (
-            <Box key={t} sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: T.night2, color: 'rgba(255,255,255,0.75)', borderRadius: '99px', whiteSpace: 'nowrap' }}>{t}</Box>
+          {['Web app · 2026', 'AI · Anthropic'].map((tag) => (
+            <Box key={tag} sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: T.night2, color: 'rgba(255,255,255,0.75)', borderRadius: '99px', whiteSpace: 'nowrap' }}>{tag}</Box>
           ))}
         </Box>
       </Box>
@@ -71,8 +71,8 @@ export default function ScoutCase() {
         <Box sx={{ borderRadius: '14px', background: 'oklch(0.10 0.015 60)', overflow: 'hidden', boxShadow: '0 30px 60px -30px rgba(0,0,0,0.6), 0 0 0 1px oklch(0.30 0.015 60)' }}>
           {/* Browser bar */}
           <Box sx={{ height: '36px', display: 'flex', alignItems: 'center', gap: '6px', padding: '0 12px', background: 'oklch(0.13 0.015 60)', borderBottom: '1px solid oklch(0.20 0.015 60)' }}>
-            {['#ff5f57','#febc2e','#28c840'].map(c => (
-              <Box key={c} sx={{ width: '11px', height: '11px', borderRadius: '99px', background: c, display: 'inline-block' }} />
+            {['#ff5f57', '#febc2e', '#28c840'].map((color) => (
+              <Box key={color} sx={{ width: '11px', height: '11px', borderRadius: '99px', background: color, display: 'inline-block' }} />
             ))}
             <Box sx={{ flex: 1, textAlign: 'center', fontFamily: T.fontMono, fontSize: '11px', color: 'oklch(0.5 0.01 60)', letterSpacing: '0.02em' }}>
               scout.app / match score
@@ -100,8 +100,8 @@ export default function ScoutCase() {
               </Box>
               {/* Nav */}
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1px', marginBottom: '14px' }}>
-                {['⊹ Discover', '◎ Match Score', '✦ Resume AI', '◈ Tracker', '◆ Company Intel'].map((item, i) => (
-                  <Box key={item} component="a" sx={{ padding: i === 1 ? '8px 8px 8px 8px' : '8px 10px', fontSize: '12.5px', color: i === 1 ? '#fff' : 'oklch(0.6 0.01 60)', textDecoration: 'none', borderRadius: '6px', borderLeft: i === 1 ? '2px solid oklch(0.7 0.14 175)' : '2px solid transparent', background: i === 1 ? 'oklch(0.13 0.015 60)' : 'transparent' }}>
+                {['⊹ Discover', '◎ Match Score', '✦ Resume AI', '◈ Tracker', '◆ Company Intel'].map((item, itemIndex) => (
+                  <Box key={item} component="a" sx={{ padding: itemIndex === 1 ? '8px 8px 8px 8px' : '8px 10px', fontSize: '12.5px', color: itemIndex === 1 ? '#fff' : 'oklch(0.6 0.01 60)', textDecoration: 'none', borderRadius: '6px', borderLeft: itemIndex === 1 ? '2px solid oklch(0.7 0.14 175)' : '2px solid transparent', background: itemIndex === 1 ? 'oklch(0.13 0.015 60)' : 'transparent' }}>
                     {item}
                   </Box>
                 ))}
@@ -120,19 +120,19 @@ export default function ScoutCase() {
 
             {/* Match list */}
             <Box sx={{ padding: '18px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {matches.map((m) => (
-                <Box key={m.rank} sx={{ background: 'oklch(0.13 0.015 60)', border: '1px solid oklch(0.20 0.015 60)', borderRadius: '10px', padding: '14px 16px', display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                  <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', color: 'oklch(0.4 0.01 60)', paddingTop: '2px' }}>{m.rank}</Box>
+              {matches.map((match) => (
+                <Box key={match.rank} sx={{ background: 'oklch(0.13 0.015 60)', border: '1px solid oklch(0.20 0.015 60)', borderRadius: '10px', padding: '14px 16px', display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', color: 'oklch(0.4 0.01 60)', paddingTop: '2px' }}>{match.rank}</Box>
                   <Box sx={{ flex: 1 }}>
-                    <Box sx={{ fontSize: '13.5px', fontWeight: 600, color: 'rgba(255,255,255,0.95)' }}>{m.title}</Box>
-                    <Box sx={{ fontSize: '11.5px', color: 'oklch(0.5 0.01 60)', marginTop: '2px' }}>{m.company}</Box>
-                    {m.explain && (
+                    <Box sx={{ fontSize: '13.5px', fontWeight: 600, color: 'rgba(255,255,255,0.95)' }}>{match.title}</Box>
+                    <Box sx={{ fontSize: '11.5px', color: 'oklch(0.5 0.01 60)', marginTop: '2px' }}>{match.company}</Box>
+                    {match.explain && (
                       <Box sx={{ marginTop: '10px', padding: '8px 10px', fontSize: '12px', lineHeight: 1.55, color: 'oklch(0.6 0.01 60)', background: 'oklch(0.10 0.015 60)', borderRadius: '6px', borderLeft: '2px solid oklch(0.7 0.14 175 / 0.4)', maxWidth: '100%' }}>
-                        {m.explain}
+                        {match.explain}
                       </Box>
                     )}
                   </Box>
-                  <Box sx={{ fontSize: '22px', fontWeight: 700, fontFamily: T.fontMono, letterSpacing: '-0.02em', color: m.color }}>{m.score}</Box>
+                  <Box sx={{ fontSize: '22px', fontWeight: 700, fontFamily: T.fontMono, letterSpacing: '-0.02em', color: match.color }}>{match.score}</Box>
                 </Box>
               ))}
             </Box>

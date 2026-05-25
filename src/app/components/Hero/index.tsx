@@ -84,8 +84,8 @@ export default function Hero() {
 
           {/* Chip row */}
           <Box sx={{ display: 'flex', gap: '8px', marginTop: '30px', flexWrap: 'wrap' }}>
-            {chips.map((c) => (
-              <Chip key={c}>{c}</Chip>
+            {chips.map((chip) => (
+              <Chip key={chip}>{chip}</Chip>
             ))}
           </Box>
 
@@ -231,10 +231,10 @@ export default function Hero() {
             }}
           >
             {[
-              { k: 'Based in', v: 'Florida · Remote' },
-              { k: 'Years shipping', v: '5+' },
-            ].map(({ k, v }) => (
-              <React.Fragment key={k}>
+              { label: 'Based in', value: 'Florida · Remote' },
+              { label: 'Years shipping', value: '5+' },
+            ].map(({ label, value }) => (
+              <React.Fragment key={label}>
                 <Box
                   component="span"
                   sx={{
@@ -245,13 +245,13 @@ export default function Hero() {
                     color: T.ink3,
                   }}
                 >
-                  {k}
+                  {label}
                 </Box>
                 <Box
                   component="span"
                   sx={{ fontSize: '14px', color: T.ink, fontWeight: 500, letterSpacing: '-0.01em' }}
                 >
-                  {v}
+                  {value}
                 </Box>
               </React.Fragment>
             ))}

@@ -31,17 +31,17 @@ function Dashboard() {
       {/* Stats */}
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' }, gap: '12px', marginBottom: '20px' }}>
         {[
-          { k: 'Failure rate', v: '0.4', u: '%', d: '↓ from 7.0%', good: true },
-          { k: 'DPMO', v: '4,012', u: '', d: '↓ from 70,000', good: true },
-          { k: 'Mean time to detect', v: '38', u: 's', d: 'was: hours', good: true },
-          { k: 'Coverage', v: '94', u: '%', d: 'unit + E2E', good: false },
-        ].map(s => (
-          <Box key={s.k} sx={{ background: '#fff', borderRadius: '12px', padding: '14px 16px', boxShadow: `0 0 0 1px ${T.line}` }}>
-            <Box sx={{ fontFamily: T.fontMono, fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.07em', color: T.ink3, marginBottom: '6px' }}>{s.k}</Box>
+          { label: 'Failure rate', value: '0.4', unit: '%', delta: '↓ from 7.0%', good: true },
+          { label: 'DPMO', value: '4,012', unit: '', delta: '↓ from 70,000', good: true },
+          { label: 'Mean time to detect', value: '38', unit: 's', delta: 'was: hours', good: true },
+          { label: 'Coverage', value: '94', unit: '%', delta: 'unit + E2E', good: false },
+        ].map((stat) => (
+          <Box key={stat.label} sx={{ background: '#fff', borderRadius: '12px', padding: '14px 16px', boxShadow: `0 0 0 1px ${T.line}` }}>
+            <Box sx={{ fontFamily: T.fontMono, fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.07em', color: T.ink3, marginBottom: '6px' }}>{stat.label}</Box>
             <Box sx={{ fontSize: '26px', fontWeight: 700, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', lineHeight: 1 }}>
-              {s.v}<Box component="span" sx={{ fontSize: '14px', color: T.ink3, fontWeight: 500, marginLeft: '1px' }}>{s.u}</Box>
+              {stat.value}<Box component="span" sx={{ fontSize: '14px', color: T.ink3, fontWeight: 500, marginLeft: '1px' }}>{stat.unit}</Box>
             </Box>
-            <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', color: s.good ? 'oklch(0.5 0.12 150)' : T.ink3, marginTop: '6px' }}>{s.d}</Box>
+            <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', color: stat.good ? 'oklch(0.5 0.12 150)' : T.ink3, marginTop: '6px' }}>{stat.delta}</Box>
           </Box>
         ))}
       </Box>
@@ -110,8 +110,8 @@ export default function SilverLogicCase() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-end' }}>
-          {['Production · 5+ clients', 'Team of 5+ engineers'].map(t => (
-            <Box key={t} sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: T.bg, color: T.ink2, borderRadius: '99px', whiteSpace: 'nowrap' }}>{t}</Box>
+          {['Production · 5+ clients', 'Team of 5+ engineers'].map((tag) => (
+            <Box key={tag} sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: T.bg, color: T.ink2, borderRadius: '99px', whiteSpace: 'nowrap' }}>{tag}</Box>
           ))}
         </Box>
       </Box>

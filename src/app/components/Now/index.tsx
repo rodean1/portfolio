@@ -5,12 +5,12 @@ import Box from '@mui/material/Box'
 import { Eyebrow } from '@/components/primitives'
 import { T } from '@/lib/theme'
 
-const cards: { k: string; v: React.ReactNode; primary?: boolean }[] = [
-  { k: 'Shipping', v: 'Multi‑client SaaS at The Silver Logic — feature work, anomaly dashboards, and bringing tests to brownfield code.', primary: true },
-  { k: 'Side build', v: <><strong>Telora</strong> — pushing the call‑concierge concept past prototype into a real iOS surface.</> },
-  { k: 'Side build', v: <><strong>Scout</strong> — iterating on the match‑scoring algorithm; testing transparency vs. accuracy tradeoffs.</> },
-  { k: 'Learning', v: 'Production GraphQL patterns — schema federation, persisted queries, N+1 hygiene at scale.' },
-  { k: 'Reading', v: 'Deep Work · Atomic Habits · The One Thing — system over willpower.' },
+const cards: { label: string; value: React.ReactNode; primary?: boolean }[] = [
+  { label: 'Shipping', value: 'Multi‑client SaaS at The Silver Logic — feature work, anomaly dashboards, and bringing tests to brownfield code.', primary: true },
+  { label: 'Side build', value: <><strong>Telora</strong> — pushing the call‑concierge concept past prototype into a real iOS surface.</> },
+  { label: 'Side build', value: <><strong>Scout</strong> — iterating on the match‑scoring algorithm; testing transparency vs. accuracy tradeoffs.</> },
+  { label: 'Learning', value: 'Production GraphQL patterns — schema federation, persisted queries, N+1 hygiene at scale.' },
+  { label: 'Reading', value: 'Deep Work · Atomic Habits · The One Thing — system over willpower.' },
 ]
 
 export default function Now() {
@@ -32,9 +32,9 @@ export default function Now() {
       </Box>
 
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: '14px' }}>
-        {cards.map((card, i) => (
+        {cards.map((card, cardIndex) => (
           <Box
-            key={i}
+            key={cardIndex}
             sx={{
               background: card.primary ? T.accentSoft : '#fff',
               borderRadius: '18px',
@@ -43,8 +43,8 @@ export default function Now() {
               display: 'flex', flexDirection: 'column', gap: '10px',
             }}
           >
-            <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.07em', color: card.primary ? T.accentDeep : T.ink3 }}>{card.k}</Box>
-            <Box sx={{ fontSize: '15.5px', color: T.ink, letterSpacing: '-0.01em', lineHeight: 1.5 }}>{card.v}</Box>
+            <Box sx={{ fontFamily: T.fontMono, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.07em', color: card.primary ? T.accentDeep : T.ink3 }}>{card.label}</Box>
+            <Box sx={{ fontSize: '15.5px', color: T.ink, letterSpacing: '-0.01em', lineHeight: 1.5 }}>{card.value}</Box>
           </Box>
         ))}
 

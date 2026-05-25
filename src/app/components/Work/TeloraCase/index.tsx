@@ -22,9 +22,9 @@ function LiveDot() {
 function TypingDots() {
   return (
     <Box sx={{ display: 'inline-flex', gap: '3px', marginTop: '4px' }}>
-      {[0, 0.18, 0.36].map((delay, i) => (
+      {[0, 0.18, 0.36].map((delay, dotIndex) => (
         <Box
-          key={i}
+          key={dotIndex}
           component="span"
           sx={{
             width: '5px', height: '5px',
@@ -76,8 +76,8 @@ function PhoneMockup() {
         }}>
           <span>9:41</span>
           <Box sx={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-            {[0,1,2].map(i => (
-              <Box key={i} sx={{ width: '5px', height: '5px', borderRadius: '99px', background: T.ink2 }} />
+            {[0, 1, 2].map((signalDotIndex) => (
+              <Box key={signalDotIndex} sx={{ width: '5px', height: '5px', borderRadius: '99px', background: T.ink2 }} />
             ))}
             <Box sx={{ width: '14px', height: '8px', background: T.ink2, borderRadius: '2px', marginLeft: '2px' }} />
           </Box>
@@ -188,8 +188,8 @@ export default function TeloraCase() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-end' }}>
-          {['Concept · iOS & Web', '2026'].map(t => (
-            <Box key={t} sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: T.bg, color: T.ink2, borderRadius: '99px', whiteSpace: 'nowrap' }}>{t}</Box>
+          {['Concept · iOS & Web', '2026'].map((tag) => (
+            <Box key={tag} sx={{ fontFamily: T.fontMono, fontSize: '11px', padding: '4px 10px', background: T.bg, color: T.ink2, borderRadius: '99px', whiteSpace: 'nowrap' }}>{tag}</Box>
           ))}
         </Box>
       </Box>

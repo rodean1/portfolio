@@ -13,7 +13,7 @@ const sizes: Record<Size, { bracket: string; monogram: string }> = {
 }
 
 export default function RfMark({ size = 'md' }: { size?: Size }) {
-  const s = sizes[size]
+  const sizeConfig = sizes[size]
   return (
     <Box
       component="span"
@@ -32,7 +32,7 @@ export default function RfMark({ size = 'md' }: { size?: Size }) {
         sx={{
           fontFamily: T.fontMono,
           fontWeight: 300,
-          fontSize: s.bracket,
+          fontSize: sizeConfig.bracket,
           color: T.ink,
           letterSpacing: '-0.04em',
           transform: 'translateY(-1px)',
@@ -45,7 +45,7 @@ export default function RfMark({ size = 'md' }: { size?: Size }) {
         sx={{
           fontFamily: T.fontSerif,
           fontWeight: 400,
-          fontSize: s.monogram,
+          fontSize: sizeConfig.monogram,
           color: T.accent,
           letterSpacing: '0.02em',
           lineHeight: 1,
@@ -62,7 +62,7 @@ export default function RfMark({ size = 'md' }: { size?: Size }) {
         sx={{
           fontFamily: T.fontMono,
           fontWeight: 300,
-          fontSize: s.bracket,
+          fontSize: sizeConfig.bracket,
           color: T.ink,
           letterSpacing: '-0.04em',
           transform: 'translateY(-1px)',
