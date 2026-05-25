@@ -17,7 +17,11 @@ import {
 } from "./styled";
 
 const links = [
-  { label: "GitHub", displayText: "github.com/rodean1", href: "https://github.com/rodean1" },
+  {
+    label: "GitHub",
+    displayText: "github.com/rodean1",
+    href: "https://github.com/rodean1",
+  },
   {
     label: "LinkedIn",
     displayText: "in/rodean-fraser",
@@ -37,14 +41,11 @@ export default function Contact() {
             worth keeping.
           </ContactTitle>
           <ContactDescription>
-            I&apos;m open to senior full‑stack roles — ideally remote, ideally
-            somewhere that ships and measures. Happy to chat about contract or
-            full‑time. Reply within 24 hours.
+            I&apos;m open to senior full‑stack roles, ideally remote. Happy to
+            chat about contract or full‑time. Reply within 24 hours.
           </ContactDescription>
           <ContactAction>
-            <LargePrimaryActionLink
-              href="mailto:rodeanfraser@gmail.com"
-            >
+            <LargePrimaryActionLink href="mailto:rodeanfraser@gmail.com">
               rodeanfraser@gmail.com <span aria-hidden="true">→</span>
             </LargePrimaryActionLink>
           </ContactAction>
@@ -52,24 +53,20 @@ export default function Contact() {
 
         <ContactLinks>
           {links.map((link) => (
-            <ContactListItem
-              key={link.label}
-            >
+            <ContactListItem key={link.label}>
               <ContactLink
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                rel={
+                  link.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
               >
-                <ContactLinkLabel>
-                  {link.label}
-                </ContactLinkLabel>
+                <ContactLinkLabel>{link.label}</ContactLinkLabel>
                 <ContactLinkValue>
                   {link.displayText}{" "}
-                  <ContactArrow
-                    className="cl-arrow"
-                  >
-                    ↗
-                  </ContactArrow>
+                  <ContactArrow className="cl-arrow">↗</ContactArrow>
                 </ContactLinkValue>
               </ContactLink>
             </ContactListItem>

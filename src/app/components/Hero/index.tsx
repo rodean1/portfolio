@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { Eyebrow, Chip } from '@/components/primitives'
-import { PrimaryActionLink } from '../styled'
+import React from "react";
+import { Eyebrow, Chip } from "@/components/primitives";
+import { PrimaryActionLink } from "../styled";
 import {
   ActionRow,
   ChipRow,
@@ -12,7 +12,6 @@ import {
   HeroSection,
   HeroStrong,
   HeroTitle,
-  HeroTitleEmphasis,
   PortraitCaption,
   PortraitCaptionAccent,
   PortraitFigure,
@@ -21,9 +20,15 @@ import {
   StampGrid,
   StampLabel,
   StampValue,
-} from './styled'
+} from "./styled";
 
-const chips = ['React / Next.js', 'TypeScript', 'Django · DRF · GraphQL', 'PostgreSQL', 'CI/CD']
+const chips = [
+  "React / Next.js",
+  "TypeScript",
+  "Django · DRF · GraphQL",
+  "PostgreSQL",
+  "CI/CD",
+];
 
 export default function Hero() {
   return (
@@ -33,25 +38,15 @@ export default function Hero() {
         <div>
           <Eyebrow dot>Available · open to senior full‑stack roles</Eyebrow>
 
-          <HeroTitle>
-            Full stack engineer
-            <br />
-            who ships{' '}
-            <HeroTitleEmphasis>
-              end&#8209;to&#8209;end
-            </HeroTitleEmphasis>
-            .
-          </HeroTitle>
+          <HeroTitle>Full stack engineer.</HeroTitle>
 
           <HeroLead>
-            I&apos;m{' '}
-            <HeroStrong>
-              Rodean Fraser
-            </HeroStrong>{' '}
-            — five years building production SaaS, client portals, and internal dashboards with
-            React, TypeScript, Django REST and GraphQL. I scope features, design the API, ship the
-            UI, and instrument the thing in production. Lean Six Sigma Green Belt; data‑driven about
-            reliability.
+            I&apos;m <HeroStrong>Rodean Fraser</HeroStrong> and for the last
+            five years I have been building SaaS products, integrating AI into
+            production, and developing client portals and internal dashboards
+            with React, TypeScript, Django REST and GraphQL. I scope features,
+            design the API, ship the UI, and instrument the thing in production.
+            Lean Six Sigma Green Belt; data‑driven about reliability.
           </HeroLead>
 
           {/* Chip row */}
@@ -63,9 +58,7 @@ export default function Hero() {
 
           {/* Action buttons */}
           <ActionRow>
-            <PrimaryActionLink
-              href="#work"
-            >
+            <PrimaryActionLink href="#work">
               See selected work <span aria-hidden="true">↓</span>
             </PrimaryActionLink>
             <SecondaryActionLink
@@ -92,30 +85,24 @@ export default function Hero() {
             <PortraitCaption>
               <span>Calm mind.</span>
               <span>Big plans.</span>
-              <PortraitCaptionAccent>
-                Bigger impact.
-              </PortraitCaptionAccent>
+              <PortraitCaptionAccent>Bigger impact.</PortraitCaptionAccent>
             </PortraitCaption>
           </PortraitFigure>
 
           {/* Stamp row */}
           <StampGrid>
             {[
-              { label: 'Based in', value: 'Florida · Remote' },
-              { label: 'Years shipping', value: '5+' },
+              { label: "Based in", value: "Florida · Remote" },
+              { label: "Years shipping", value: "5+" },
             ].map(({ label, value }) => (
               <React.Fragment key={label}>
-                <StampLabel>
-                  {label}
-                </StampLabel>
-                <StampValue>
-                  {value}
-                </StampValue>
+                <StampLabel>{label}</StampLabel>
+                <StampValue>{value}</StampValue>
               </React.Fragment>
             ))}
           </StampGrid>
         </HeroAside>
       </HeroGrid>
     </HeroSection>
-  )
+  );
 }
