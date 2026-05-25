@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   CardParagraph,
@@ -17,7 +17,7 @@ import {
   InfoCardLabel,
   InlineEmphasis,
   SideCards,
-} from '../styled'
+} from "../styled";
 import {
   AiBadge,
   BrandTitleRow,
@@ -50,15 +50,40 @@ import {
   TargetLabel,
   TargetText,
   WindowDot,
-} from './styled'
+} from "./styled";
 
 const matches = [
-  { rank: '#1', title: 'Senior Product Manager', company: 'Linear', score: '98%', color: 'oklch(0.7 0.14 175)' },
-  { rank: '#2', title: 'Product Manager, Growth', company: 'Loom', score: '96%', color: 'oklch(0.7 0.14 175)' },
-  { rank: '#3', title: 'Technical PM', company: 'Retool', score: '88%', color: 'oklch(0.78 0.14 75)' },
-  { rank: '#4', title: 'PM — Core Product', company: 'Webflow', score: '85%', color: 'oklch(0.78 0.14 75)',
-    explain: '✦ Strong alignment on remote, SaaS, and company size. Webflow\'s mid‑sized product org maps cleanly to your target — your platform experience would translate directly.' },
-]
+  {
+    rank: "#1",
+    title: "Senior Product Manager",
+    company: "Linear",
+    score: "98%",
+    color: "oklch(0.7 0.14 175)",
+  },
+  {
+    rank: "#2",
+    title: "Product Manager, Growth",
+    company: "Loom",
+    score: "96%",
+    color: "oklch(0.7 0.14 175)",
+  },
+  {
+    rank: "#3",
+    title: "Senior Software Engineer",
+    company: "Retool",
+    score: "88%",
+    color: "oklch(0.78 0.14 75)",
+  },
+  {
+    rank: "#4",
+    title: "Product Manager",
+    company: "Webflow",
+    score: "85%",
+    color: "oklch(0.78 0.14 75)",
+    explain:
+      "✦ Strong alignment on remote, SaaS, and company size. Webflow's mid‑sized product org maps cleanly to your target — your platform experience would translate directly.",
+  },
+];
 
 export default function ScoutCase() {
   return (
@@ -75,12 +100,16 @@ export default function ScoutCase() {
             An AI recruiter that ranks the long list.
           </CaseTitle>
           <CaseDescription tone="dark">
-            A job‑search workspace built around a transparent, tunable match algorithm. You weight your criteria, Scout re‑ranks 800+ listings in real time and explains the top picks in plain English.
+            A job‑search workspace built around a transparent, tunable match
+            algorithm. You weight your criteria, Scout re‑ranks 800+ listings in
+            real time and explains the top picks in plain English.
           </CaseDescription>
         </div>
         <CaseTags>
-          {['Web app · 2026', 'AI · Anthropic'].map((tag) => (
-            <CaseTag key={tag} tone="dark">{tag}</CaseTag>
+          {["Web app · 2026", "AI · Anthropic"].map((tag) => (
+            <CaseTag key={tag} tone="dark">
+              {tag}
+            </CaseTag>
           ))}
         </CaseTags>
       </CaseHeader>
@@ -91,12 +120,10 @@ export default function ScoutCase() {
         <BrowserMockup>
           {/* Browser bar */}
           <BrowserBar>
-            {['#ff5f57', '#febc2e', '#28c840'].map((color) => (
+            {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
               <WindowDot key={color} dotColor={color} />
             ))}
-            <BrowserTitle>
-              scout.app / match score
-            </BrowserTitle>
+            <BrowserTitle>scout.app / match score</BrowserTitle>
           </BrowserBar>
           {/* Browser body */}
           <BrowserBody>
@@ -120,7 +147,13 @@ export default function ScoutCase() {
               </TargetCard>
               {/* Nav */}
               <SidebarNav>
-                {['⊹ Discover', '◎ Match Score', '✦ Resume AI', '◈ Tracker', '◆ Company Intel'].map((item, itemIndex) => (
+                {[
+                  "⊹ Discover",
+                  "◎ Match Score",
+                  "✦ Resume AI",
+                  "◈ Tracker",
+                  "◆ Company Intel",
+                ].map((item, itemIndex) => (
                   <SidebarNavLink key={item} active={itemIndex === 1}>
                     {item}
                   </SidebarNavLink>
@@ -132,8 +165,12 @@ export default function ScoutCase() {
                   <LiveDotTeal /> Live · indexing
                 </SidebarStatus>
                 <SidebarStats>
-                  <span><SidebarStatNumber>847</SidebarStatNumber> listings</span>
-                  <span><SidebarStatNumber>312</SidebarStatNumber> companies</span>
+                  <span>
+                    <SidebarStatNumber>847</SidebarStatNumber> listings
+                  </span>
+                  <span>
+                    <SidebarStatNumber>312</SidebarStatNumber> companies
+                  </span>
                 </SidebarStats>
               </SidebarFooter>
             </ScoutSidebar>
@@ -147,12 +184,12 @@ export default function ScoutCase() {
                     <MatchTitle>{match.title}</MatchTitle>
                     <MatchCompany>{match.company}</MatchCompany>
                     {match.explain && (
-                      <MatchExplain>
-                        {match.explain}
-                      </MatchExplain>
+                      <MatchExplain>{match.explain}</MatchExplain>
                     )}
                   </MatchBody>
-                  <MatchScore scoreColor={match.color}>{match.score}</MatchScore>
+                  <MatchScore scoreColor={match.color}>
+                    {match.score}
+                  </MatchScore>
                 </MatchCard>
               ))}
             </MatchList>
@@ -164,7 +201,12 @@ export default function ScoutCase() {
           <InfoCard tone="darkPanel">
             <InfoCardLabel tone="darkPanel">What I built</InfoCardLabel>
             <CaseList tone="darkPanel">
-              {['Weighted scoring engine with live re‑rank', 'Resume optimizer (LLM‑powered)', 'Application tracker w/ pipeline states', 'Company intel scraping & summarization'].map(item => (
+              {[
+                "Weighted scoring engine with live re‑rank",
+                "Resume optimizer (LLM‑powered)",
+                "Application tracker w/ pipeline states",
+                "Company intel scraping & summarization",
+              ].map((item) => (
                 <CaseListItem key={item} tone="darkPanel">
                   {item}
                 </CaseListItem>
@@ -174,19 +216,20 @@ export default function ScoutCase() {
           <InfoCard tone="darkPanel">
             <InfoCardLabel tone="darkPanel">Stack</InfoCardLabel>
             <CardParagraph tone="darkPanel">
-              React 18 · Space Grotesk · Anthropic Claude · client‑side weight tuning, sliders sum to 100. Five tabs, one workspace.
+              React 18 · Space Grotesk · Anthropic Claude · client‑side weight
+              tuning, sliders sum to 100. Five tabs, one workspace.
             </CardParagraph>
           </InfoCard>
           <InfoCard tone="darkPanel">
             <InfoCardLabel tone="darkPanel">Outcome</InfoCardLabel>
             <CardParagraph tone="darkPanel">
-              A search surface that{' '}
-              <InlineEmphasis tone="darkPanel">shows its math</InlineEmphasis>
-              . The explanation card under each match converts a ranked list into something you can argue with — and tune.
+              A search surface that shows its math. The explanation card under
+              each match converts a ranked list into something you can argue
+              with and tune.
             </CardParagraph>
           </InfoCard>
         </SideCards>
       </CaseCanvas>
     </CaseArticle>
-  )
+  );
 }
