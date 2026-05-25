@@ -1,11 +1,12 @@
 import Nav from './components/Nav'
+import Hero from './components/Hero'
 
 export default function Page() {
   return (
     <>
       <Nav />
-      <main id="top" style={{ minHeight: '200vh', padding: '40px' }}>
-        Portfolio coming soon
+      <main id="top">
+        <Hero />
       </main>
     </>
   )
